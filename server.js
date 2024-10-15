@@ -27,7 +27,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/seller', {
+mongoose.connect('mongodb+srv://harishkumawatkumawat669:7FiBpE7v7lNyDp6G@cluster0.ogeix.mongodb.net/seller', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

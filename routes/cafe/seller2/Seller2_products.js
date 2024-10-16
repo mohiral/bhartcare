@@ -1,9 +1,9 @@
 import express from 'express';
-import Category from '../../../models/cafe/seller2/Seller2_Category.js';
+import Category from '../../../models/cafe/seller2/seller2_Category.js';
 
 const router = express.Router();
 
-// Get products by category for Seller2
+// Get products by category
 router.get('/:categoryName', async (req, res) => {
   const { categoryName } = req.params;
 
@@ -19,13 +19,14 @@ router.get('/:categoryName', async (req, res) => {
   }
 });
 
-// Add a new product to a category for Seller2
+// Add a new product to a category
 router.post('/', async (req, res) => {
   const { category, productData } = req.body;
 
   try {
     const categoryDoc = await Category.findOne({ name: category });
     if (categoryDoc) {
+      // Push the new product, including the offer field
       categoryDoc.products.push(productData);
       await categoryDoc.save();
       res.status(201).json(categoryDoc);
@@ -37,7 +38,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Delete a product from a category for Seller2
+// Delete a product from a category
 router.delete('/:categoryName/:productId', async (req, res) => {
   const { categoryName, productId } = req.params;
 

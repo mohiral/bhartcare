@@ -1,20 +1,22 @@
 import mongoose from 'mongoose';
 
-const categorySchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  type: { type: String, enum: ['Garment', 'Tech'], required: true }, // Category type
-  products: [
-    {
-      name: { type: String, required: true },
-      price: { type: Number, required: true },
-      description: { type: String, required: true },
-      specifications: { type: [String], required: true },
-      img: { type: String, required: true },
-    },
-  ],
+  price: { type: Number, required: true },
+  description: { type: String, required: true },
+  specifications: { type: [String], required: true },
+  img: { type: String, required: true },
+  offer: { type: String, required: false }, // Offer field
+  likeCount: { type: Number, default: 0 }, // Like count
+  comments: [{ text: String, date: { type: Date, default: Date.now } }], // Comments array
 });
 
-// Store in 'seller2_categories' collection
+const categorySchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  type: { type: String, enum: ['Garment', 'Tech', 'Cafe', 'Dinesh'], required: true },
+  products: [productSchema], // Embedded products schema
+});
+
 const Category = mongoose.model('Seller2_Data', categorySchema);
 
 export default Category;

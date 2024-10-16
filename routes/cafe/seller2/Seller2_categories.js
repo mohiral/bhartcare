@@ -1,6 +1,6 @@
-// In routes/cafe/seller2/seller2_categories.js
+// In routes/cafe/seller2/Seller2_categories.js
 import express from 'express';
-import Category from '../../../models/cafe/seller2/seller2_Category.js';
+import Category from '../../../models/cafe/seller2/Seller2_Category.js';
 
 const router = express.Router();
 

@@ -1,16 +1,7 @@
 import mongoose from 'mongoose';
 
-// Create Mongoose Schema and Model for Orders
 const orderSchema = new mongoose.Schema({
   userId: { type: String, required: true },
-  productId: { type: String, required: true },
-  name: { type: String, required: true },
-  address: { type: String, required: true },
-  mobile: { type: String, required: true },
-  location: {
-    lat: { type: Number, required: true },
-    lng: { type: Number, required: true },
-  },
   items: [
     {
       productId: { type: String, required: true },

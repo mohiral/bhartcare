@@ -1,3 +1,4 @@
+// user/routes/orderRoutes.js
 import express from 'express';
 import Order from '../models/Order.js';
 
@@ -6,17 +7,13 @@ const router = express.Router();
 // Create a new order
 router.post('/', async (req, res) => {
   try {
-    const { userId, productId, name, address, mobile, location, items } = req.body;
+    const { userId, items } = req.body;
 
     // Create a new order instance
     const newOrder = new Order({
       userId,
-      productId,
-      name,
-      address,
-      mobile,
-      location,
       items,
+      createdAt: new Date(),
     });
 
     // Save the order to the database

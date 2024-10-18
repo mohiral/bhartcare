@@ -1,4 +1,3 @@
-// user/routes/orderRoutes.js
 import express from 'express';
 import Order from '../models/Order.js';
 
@@ -7,11 +6,19 @@ const router = express.Router();
 // Create a new order
 router.post('/', async (req, res) => {
   try {
-    const { userId, items } = req.body;
+    const { userId, name, address, mobile, items } = req.body;
+
+    // Validate that items array is not empty
+    if (!items || items.length === 0) {
+      return res.status(400).json({ message: 'No items in the order' });
+    }
 
     // Create a new order instance
     const newOrder = new Order({
       userId,
+      name,
+      address,
+      mobile,
       items,
       createdAt: new Date(),
     });

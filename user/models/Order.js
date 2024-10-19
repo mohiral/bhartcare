@@ -2,6 +2,14 @@ import mongoose from 'mongoose';
 
 const orderSchema = new mongoose.Schema({
   userId: { type: String, required: true },
+  productId: { type: String, required: true },
+  name: { type: String, required: true },
+  address: { type: String, required: true },
+  mobile: { type: String, required: true },
+  location: {
+    lat: { type: Number, required: true },
+    lng: { type: Number, required: true },
+  },
   items: [
     {
       productId: { type: String, required: true },
@@ -14,7 +22,7 @@ const orderSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-// Check if the 'Order' model already exists before defining it
+// Check if the 'Order' model already exists to prevent redefinition
 const Order = mongoose.models.Order || mongoose.model('Order', orderSchema);
 
 export default Order;

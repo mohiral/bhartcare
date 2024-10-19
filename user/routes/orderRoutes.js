@@ -1,4 +1,4 @@
-// user/routes/orderRoutes.js
+// routes/orderRoutes.js
 import express from 'express';
 import Order from '../models/Order.js';
 
@@ -7,13 +7,22 @@ const router = express.Router();
 // Create a new order
 router.post('/', async (req, res) => {
   try {
-    const { userId, items } = req.body;
+    const { userId, productId, name, address, mobile, location, items } = req.body;
 
-    // Create a new order instance
+    // Validate request data
+    if (!userId || !productId || !name || !address || !mobile || !location || !items) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    // Create new order
     const newOrder = new Order({
       userId,
+      productId,
+      name,
+      address,
+      mobile,
+      location,
       items,
-      createdAt: new Date(),
     });
 
     // Save the order to the database
@@ -21,7 +30,7 @@ router.post('/', async (req, res) => {
     res.status(201).json(savedOrder);
   } catch (error) {
     console.error('Error creating order:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ message: 'Internal server error', error: error.message });
   }
 });
 
@@ -29,6 +38,8 @@ router.post('/', async (req, res) => {
 router.get('/:userId', async (req, res) => {
   try {
     const { userId } = req.params;
+
+    // Fetch orders for the user
     const orders = await Order.find({ userId });
 
     if (orders.length > 0) {
@@ -38,7 +49,7 @@ router.get('/:userId', async (req, res) => {
     }
   } catch (error) {
     console.error('Error retrieving orders:', error);
-    res.status(500).json({ error: 'Failed to retrieve orders' });
+    res.status(500).json({ error: 'Failed to retrieve orders', message: error.message });
   }
 });
 

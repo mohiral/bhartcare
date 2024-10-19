@@ -7,13 +7,17 @@ const router = express.Router();
 // Create a new order
 router.post('/', async (req, res) => {
   try {
-    const { userId, items } = req.body;
+    const { userId, productId, name, address, mobile, location, items } = req.body;
 
     // Create a new order instance
     const newOrder = new Order({
       userId,
+      productId,
+      name,
+      address,
+      mobile,
+      location,
       items,
-      createdAt: new Date(),
     });
 
     // Save the order to the database
@@ -21,7 +25,7 @@ router.post('/', async (req, res) => {
     res.status(201).json(savedOrder);
   } catch (error) {
     console.error('Error creating order:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ message: 'Internal server error', error: error.message });
   }
 });
 
@@ -38,7 +42,7 @@ router.get('/:userId', async (req, res) => {
     }
   } catch (error) {
     console.error('Error retrieving orders:', error);
-    res.status(500).json({ error: 'Failed to retrieve orders' });
+    res.status(500).json({ error: 'Failed to retrieve orders', message: error.message });
   }
 });
 

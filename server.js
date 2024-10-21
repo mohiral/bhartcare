@@ -44,8 +44,8 @@ app.use(bodyParser.json());
 mongoose.connect(
   process.env.MONGO_URI || 'mongodb+srv://harishkumawatkumawat669:7FiBpE7v7lNyDp6G@cluster0.ogeix.mongodb.net/seller',
   {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
   }
 );
 

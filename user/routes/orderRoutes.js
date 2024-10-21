@@ -1,4 +1,4 @@
-// routes/orderRoutes.js
+// user/routes/orderRoutes.js
 import express from 'express';
 import Order from '../models/Order.js';
 
@@ -9,12 +9,7 @@ router.post('/', async (req, res) => {
   try {
     const { userId, productId, name, address, mobile, location, items } = req.body;
 
-    // Validate request data
-    if (!userId || !productId || !name || !address || !mobile || !location || !items) {
-      return res.status(400).json({ message: 'All fields are required' });
-    }
-
-    // Create new order
+    // Create a new order instance
     const newOrder = new Order({
       userId,
       productId,
@@ -38,8 +33,6 @@ router.post('/', async (req, res) => {
 router.get('/:userId', async (req, res) => {
   try {
     const { userId } = req.params;
-
-    // Fetch orders for the user
     const orders = await Order.find({ userId });
 
     if (orders.length > 0) {

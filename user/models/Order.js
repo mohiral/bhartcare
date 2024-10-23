@@ -1,9 +1,7 @@
-// user/models/Order.js
 import mongoose from 'mongoose';
 
 const orderSchema = new mongoose.Schema({
     userId: { type: String, required: true },
-    // productId: { type: String, required: true },
     name: { type: String, required: true },
     address: { type: String, required: true },
     mobile: { type: String, required: true },
@@ -19,6 +17,7 @@ const orderSchema = new mongoose.Schema({
             image: { type: String },
         },
     ],
+    paymentMethod: { type: String, required: true }, // Add this line
     status: { type: String, default: 'Pending' },
     createdAt: { type: Date, default: Date.now },
 });

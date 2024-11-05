@@ -26,6 +26,7 @@ import Services_Center_seller1ProductRoutes from './routes/Services_Center/selle
 import Services_Center_Seller1_Service_categories from './routes/Services_Center/seller1/Services_Center_Seller1_Service_categories.js';
 import Services_Center_Seller1_Services from './routes/Services_Center/seller1/Services_Center_Seller1_Services.js';
 
+import bookRoutes from './routes/Services_Center/seller1/Services_Center_Seller1_bookkRoutes.js'
 
 // Import Services seller1 routses
 import Fitness_Seller1_Service_categories from './routes/Fitness/seller1/Fitness_Seller1_Service_categories.js';
@@ -58,6 +59,17 @@ import Hotalseller1ProductRoutes from './routes/Hotal/seller1/Hotal_Seller1_prod
 import HomeDecorseller1CategoryRoutes from './routes/HomeDecor/seller1/HomeDecor_Seller1_categories.js';
 import HomeDecorseller1ProductRoutes from './routes/HomeDecor/seller1/HomeDecor_Seller1_products.js';
 
+// Import Doctor seller1 routes
+import Doctor_seller1CategoryRoutes from './routes/Doctor/seller1/Doctor_Seller1_categories.js';
+import Doctor_seller1ProductRoutes from './routes/Doctor/seller1/Doctor_Seller1_products.js';
+
+// Import Services seller1 routses
+import Doctor_Seller1_Service_categories from './routes/Doctor/seller1/Doctor_Seller1_Service_categories.js';
+import Doctor_Seller1_Services from './routes/Doctor/seller1/Doctor_Seller1_Services.js';
+
+// import bookRoutes from './routes/Doctor/seller1/Doctor_Seller1_bookkRoutes.js'
+
+
 // Import user and cart routes
 import userRoutes from './user/routes/userRoutes.js';
 import cartRoutes from './user/routes/cartRoutes.js';
@@ -66,7 +78,6 @@ import cartRoutes from './user/routes/cartRoutes.js';
 import orderRoutes from './user/routes/orderRoutes.js';
 
 import roomRoutes from './routes/Hotal/seller1/Hotal_Seller1_roomRoutes.js';
-
 
 
 
@@ -108,6 +119,17 @@ app.use('/Services_Center_seller1_products', Services_Center_seller1ProductRoute
 
 app.use('/Services_Center_Seller1_Service_categories', Services_Center_Seller1_Service_categories);
 app.use('/Services_Center_Seller1_Services', Services_Center_Seller1_Services);
+
+// Routes for Doctor seller1
+
+app.use('/Doctor_seller1_categories', Doctor_seller1CategoryRoutes);
+app.use('/Doctor_seller1_products', Doctor_seller1ProductRoutes);
+
+// Routes for Services seller1
+
+app.use('/Doctor_Seller1_Service_categories', Doctor_Seller1_Service_categories);
+app.use('/Doctor_Seller1_Services', Doctor_Seller1_Services);
+
 
 // Routes for Fitness Services seller1
 
@@ -151,6 +173,9 @@ app.use('/users', userRoutes);
 app.use('/orders', orderRoutes);
 
 app.use('/api', roomRoutes);
+
+
+app.use('/books', bookRoutes);
 
 
 // Start the server

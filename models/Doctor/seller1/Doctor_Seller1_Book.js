@@ -24,6 +24,6 @@ const roomSchema = new mongoose.Schema({
   likes: { type: Number, default: 0 }, // Add likes field here
 });
 
-const Room = mongoose.model('Room', roomSchema);
+const Room = mongoose.model('Doctor_Seller1_Book', roomSchema);
 
 export default Room;

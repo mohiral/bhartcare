@@ -9,15 +9,14 @@ const productSchema = new mongoose.Schema({
   offer: { type: String, required: false }, // Offer field
   likeCount: { type: Number, default: 0 }, // Like count
   comments: [{ text: String, date: { type: Date, default: Date.now } }], // Comments array
-  highlights: { type: [String], required: false } // Highlights field
 });
 
 const categorySchema = new mongoose.Schema({
   name: { type: String, required: true },
-  type: { type: String, enum: ['Garment', 'Tech', 'Kirana', 'Dinesh'], required: true },
+  type: { type: String, enum: ['Garment', 'Tech', 'Cafe', 'Dinesh'], required: true },
   products: [productSchema], // Embedded products schema
 });
 
-const Category = mongoose.model('GarmentSeller1_Data', categorySchema);
+const Category = mongoose.model('Seller2_Data', categorySchema);
 
 export default Category;

@@ -1,11 +1,11 @@
 import express from 'express';
-import Room from '../../../models/Hotal/seller1/Room.js';
+import Room from '../../../models/Services_Center/seller1/Services_Center_Seller1_Book.js';
 import { v4 as uuidv4 } from 'uuid';
 
 const router = express.Router();
 
 // Add new room
-router.post('/rooms', async (req, res) => {
+router.post('/Services_Center_Seller1_Book', async (req, res) => {
   const { title, description, price, image, roomNumber } = req.body;
   const newRoom = new Room({ title, description, price, image, roomNumber });
 
@@ -18,7 +18,7 @@ router.post('/rooms', async (req, res) => {
 });
 
 // Get all rooms
-router.get('/rooms', async (req, res) => {
+router.get('/Services_Center_Seller1_Book', async (req, res) => {
   try {
     const rooms = await Room.find();
     res.json(rooms);
@@ -28,7 +28,7 @@ router.get('/rooms', async (req, res) => {
 });
 
 // Delete a room
-router.delete('/rooms/:id', async (req, res) => {
+router.delete('/Services_Center_Seller1_Book/:id', async (req, res) => {
   try {
     const room = await Room.findByIdAndDelete(req.params.id);
     if (!room) return res.status(404).json({ error: 'Room not found' });
@@ -39,7 +39,7 @@ router.delete('/rooms/:id', async (req, res) => {
 });
 
 // Book a room
-router.put('/rooms/:id/book', async (req, res) => {
+router.put('/Services_Center_Seller1_Book/:id/book', async (req, res) => {
   const { name, contact, members, checkIn, checkOut } = req.body;
   const userId = req.body.userId; // Ensure userId is sent in the request body
 
@@ -59,7 +59,7 @@ router.put('/rooms/:id/book', async (req, res) => {
 });
 
 // Get room details with bookings
-router.get('/rooms/:id/bookings', async (req, res) => {
+router.get('/Services_Center_Seller1_Book/:id/bookings', async (req, res) => {
   try {
     const room = await Room.findById(req.params.id);
     if (!room) return res.status(404).json({ error: 'Room not found' });
@@ -71,7 +71,7 @@ router.get('/rooms/:id/bookings', async (req, res) => {
 
 // Get all booked rooms
 // Get all booked rooms for a specific user
-router.get('/rooms/booked', async (req, res) => {
+router.get('/Services_Center_Seller1_Book/booked', async (req, res) => {
   const userId = req.query.userId; // Get userId from query params
   try {
     const bookedRooms = await Room.find({ 'bookings.userId': userId }).populate('bookings');
@@ -86,7 +86,7 @@ router.get('/rooms/booked', async (req, res) => {
 
 
 // Get all booked rooms for a specific user
-router.get('/rooms/booked', async (req, res) => {
+router.get('/Services_Center_Seller1_Book/booked', async (req, res) => {
   const userId = req.query.userId; // Get userId from query params
   try {
     const bookedRooms = await Room.find({ 'bookings.userId': userId }).populate('bookings');
@@ -100,7 +100,7 @@ router.get('/rooms/booked', async (req, res) => {
 
 
 // Update booking status
-router.put('/rooms/:roomId/bookings/:bookingId', async (req, res) => {
+router.put('/Services_Center_Seller1_Book/:roomId/bookings/:bookingId', async (req, res) => {
   const { roomId, bookingId } = req.params;
   const { bookingStatus } = req.body;
 
@@ -120,7 +120,7 @@ router.put('/rooms/:roomId/bookings/:bookingId', async (req, res) => {
   }
 });
 
-router.post('/rooms/:id/comment', async (req, res) => {
+router.post('/Services_Center_Seller1_Book/:id/comment', async (req, res) => {
   const { text } = req.body;
 
   try {
@@ -138,7 +138,7 @@ router.post('/rooms/:id/comment', async (req, res) => {
 });
 
 // routes/rooms.js
-router.put('/rooms/:id/like', async (req, res) => {
+router.put('/Services_Center_Seller1_Book/:id/like', async (req, res) => {
   try {
     const room = await Room.findByIdAndUpdate(
       req.params.id,
